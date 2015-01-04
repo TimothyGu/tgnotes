@@ -3,7 +3,7 @@
 
 ## Common Definitions
 
-- `<tab>`: the horizontal tab character "	", or "\t"
+- `<tab>`: the horizontal tab character "	", or, in C escaping notation, `\t`
 - "Capitalized": the text is capitalized according to the Associated Press
   style, which specifies the following be capitalized [1]:
   - The first word
