@@ -150,3 +150,6 @@ Markdown document.
 
 This document is written in GitHub-flavored Markdown, suitable to be processed
 with the Redcarpet Markdown renderer (the default on GitHub).
+
+Copyright © 2014 Tiancheng "Timothy" Gu, under the MIT License, in the file
+`LICENSE`.
