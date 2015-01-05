@@ -61,7 +61,8 @@ No MIME types for Documents are defined at this moment.
 
 ## Line Breaks and Line Wrapping
 
-Line breaks or line wrapping is not encouraged nor discouraged.
+Line breaks or line wrapping is not encouraged nor discouraged. It is
+recommended however to be consistent with line wrapping within a Document.
 
 However, more than one consecutive line break is not allowed within a
 Paragraph or inside an inline element.
@@ -137,75 +138,13 @@ All other elements follow the Markdown standard, including but not limit to:
 
 ## Example
 
-The following is an example of a valid Document. Note that you might have to
-open the file manually to examine the use of the `<tab>` character.
-
-```
-Chapter 18: The Atlantic System and Africa
-
-I.	First Section
-	Plantations in the West Indies first started out to be successful tobacco
-	growers. Note how this Paragraph is wrapped at column 78, assuming your
-  editor is set up to have a tab width of 2 spaces.
-	A.	Colonization Before 1650
-		This is the description of the first Subsection of the first Section of the Document. Note it is not wrapped.
-
-		**DO NOT MIX WRAPPED TEXT AND NON-WRAPPED TEXT IN A DOCUMENT!** The text
-		on the left is marked as strong text.
-	B.	Sugar and Slaves
-		The Dutch expertise in the Caribbean made the English and French colonies
-		(especially Barbados) the richest in the New World.
-
-II. Second Section
-	A.	Technology and Environment
-		It is often *more profitable* to control one large sugar plantation than
-		several smaller plantations.
-	B.	Slaves' Lives
-		In ordinary days field slaves are organized into "gangs" with only the
-		youngest, oldest, and sickest not out for work.
-	C.	Free Whites and Free Blacks
-		Most free whites did not live in Jamaica, and were not the top 1%
-		population, but also owned slaves.
-```
+An example of a valid Document is in the file `example.tgnotes`.
 
 ## Reference Implementation
 
-The following is a reference implementation of the TGNotes Text Format. It is
-written using Unix Shell and Sed, and compiles a TGNotes document to a
+A reference implementation of the TGNotes Text Format is in `notes2md.sh`. It
+is written using Unix Shell and Sed, and compiles a TGNotes document to a
 Markdown document.
-
-```sh
-#!/bin/sh
-#
-# Script that converts TGNotes documents to Markdown
-#
-# Copyright © 2014 Tiancheng "Timothy" Gu
-# Licensed under the MIT License.
-
-# This script is only tested on GNU Sed.
-
-# Usage: <this file> <input.tgnotes> [<output.md>]
-# If the out put file is not specified it is assumed to be the basename (i.e.
-# name without any file extensions)
-
-if [ "$#" -lt "1" ] || [ "$#" -gt "2" ]; then
-    echo "Incorrect command syntax" >&2
-    exit 1
-else
-    in=$1
-    if [ "$#" -eq "2" ]; then
-        out=$2
-    else
-        out=${2%%.*}
-    fi
-fi
-
-sed -r -e 's/^(Chapter)/\# \1/g'             \
-       -e 's/^([IVXLCDM]+\.)\t/\#\# \1 /g'   \
-       -e 's/^\t([A-Z]+\.)\t/\n\#\#\# \1 /g' \
-       -e 's/\t//g'                          \
-       $in > $out
-```
 
 ## About This Document
 
